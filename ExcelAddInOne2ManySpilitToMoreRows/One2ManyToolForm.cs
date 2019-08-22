@@ -34,11 +34,6 @@ namespace ExcelAddInOne2ManySpilitToMoreRows
             MessageBox.Show(msg);
         }
 
-        private void btn_run_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btn_start_Click(object sender, EventArgs e)
         {
             try
