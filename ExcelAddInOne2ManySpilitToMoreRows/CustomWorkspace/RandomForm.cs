@@ -5,20 +5,22 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service;
+using ExcelAddInOne2ManySpilitToMoreRows.Util;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
-namespace ExcelAddInOne2ManySpilitToMoreRows
+namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace
 {
-    public partial class One2ManyToolForm : MaterialForm
+    public partial class RandomForm : MaterialForm
     {
-        public One2ManyToolForm()
+        public RandomForm()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.None;
-            this.panel_top.BorderStyle = BorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
 
@@ -26,37 +28,32 @@ namespace ExcelAddInOne2ManySpilitToMoreRows
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
         }
-
-
         private static void ShowStep(string msg)
         {
             MessageBox.Show(msg);
         }
-
         private void btn_start_Click(object sender, EventArgs e)
         {
             try
             {
                 Cursor = Cursors.WaitCursor;
 
-                var splitColumnName = this.edt_column.Text.Trim();
-                var splitChar = this.edt_splitChar.Text.Trim();
-                if (string.IsNullOrWhiteSpace(splitColumnName))
+                var columnName = this.edt_column.Text.Trim();
+                var num = Helper.GetObjInteger(this.edt_num.Text.Trim());
+                if (string.IsNullOrWhiteSpace(columnName))
                 {
-                    ShowStep("请输入需要切割数据所在的列！");
+                    ShowStep("请输入需要提取随机数据的列！");
                     return;
                 }
-
-                if (string.IsNullOrWhiteSpace(splitChar))
+                if (num <= 0)
                 {
-                    ShowStep("请输入分隔符");
+                    ShowStep("请输入每个数值随机提取条数！");
                     return;
                 }
-
-                var service = new Service(splitColumnName, splitChar);
+                var service = new RandomService(columnName, num);
                 var result = service.RunAsync().Result;
-
             }
             catch (Exception ms)
             {

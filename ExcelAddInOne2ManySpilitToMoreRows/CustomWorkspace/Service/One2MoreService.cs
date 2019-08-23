@@ -5,22 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ExcelAddInOne2ManySpilitToMoreRows.Util;
 using Microsoft.Office.Interop.Excel;
 
-namespace ExcelAddInOne2ManySpilitToMoreRows
+namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
 {
-    public class OutPutDomain
+    public class One2MoreService
     {
-        public string SplitValue { get; set; }
+        private string _splitColumnName;
+        private string _splitChar;
 
-        public List<string> OthersValues { get; set; }
-    }
-    public class Service
-    {
-        public string _splitColumnName;
-        public string _splitChar;
-
-        public Service(string splitColumnName, string splitChar)
+        public One2MoreService(string splitColumnName, string splitChar)
         {
             _splitColumnName = splitColumnName;
             _splitChar = splitChar;
@@ -98,14 +93,14 @@ namespace ExcelAddInOne2ManySpilitToMoreRows
             try
             {
 
-                Microsoft.Office.Interop.Excel.Workbook wb = Globals.ThisAddIn.Application.ActiveWorkbook;
-                Microsoft.Office.Interop.Excel.Worksheet sheet = wb.Sheets.Add();
+                Workbook wb = Globals.ThisAddIn.Application.ActiveWorkbook;
+                Worksheet sheet = wb.Sheets.Add();
 
                 var rowCount = array.GetLength(0);
                 var colCount = array.GetLength(1);
 
                 var strRange = $"A1:{Helper.ExcelIndexToName(colCount - 1)}{rowCount}";
-                sheet.get_Range(strRange).Value2 = array;
+                sheet.Range[strRange].Value2 = array;
 
                 return true;
             }

@@ -37,6 +37,7 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.btn_split = this.Factory.CreateRibbonButton();
+            this.btn_random = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
@@ -51,14 +52,23 @@
             // group1
             // 
             this.group1.Items.Add(this.btn_split);
-            this.group1.Label = "Jeray自定义";
+            this.group1.Items.Add(this.btn_random);
+            this.group1.Label = "Jeray通用";
             this.group1.Name = "group1";
             // 
             // btn_split
             // 
             this.btn_split.Label = "一列转多行";
             this.btn_split.Name = "btn_split";
+            this.btn_split.SuperTip = "根据指定列，指定分隔符，进行切分。转换成多行。";
             this.btn_split.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btn_split_Click);
+            // 
+            // btn_random
+            // 
+            this.btn_random.Label = "取随机数据";
+            this.btn_random.Name = "btn_random";
+            this.btn_random.SuperTip = "指定列每一样值，随机取几条";
+            this.btn_random.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btn_random_Click);
             // 
             // RibbonOne2ManySpilitToMoreRows
             // 
@@ -79,6 +89,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btn_split;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btn_random;
     }
 
     partial class ThisRibbonCollection

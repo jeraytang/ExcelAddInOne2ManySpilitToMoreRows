@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 
-namespace ExcelAddInOne2ManySpilitToMoreRows
+namespace ExcelAddInOne2ManySpilitToMoreRows.Util
 {
     public class Helper
     {
