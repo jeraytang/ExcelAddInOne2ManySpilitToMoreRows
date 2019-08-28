@@ -10,14 +10,8 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
 {
     public class RandomService
     {
-        class RowRange
-        {
-            public object Value { get; set; }
-
-            public string StrRange { get; set; }
-        }
-        private string _columnName;
-        private int _number;
+        private readonly string _columnName;
+        private readonly int _number;
         public RandomService(string columnName, int num)
         {
             this._columnName = columnName;
@@ -88,7 +82,7 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
 
                 return twoArray;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

@@ -12,8 +12,8 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
 {
     public class One2MoreService
     {
-        private string _splitColumnName;
-        private string _splitChar;
+        private readonly string _splitColumnName;
+        private readonly string _splitChar;
 
         public One2MoreService(string splitColumnName, string splitChar)
         {
@@ -46,7 +46,6 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
                 var colTotal = sheet.UsedRange.SpecialCells(XlCellType.xlCellTypeLastCell).Column;
 
                 var list = new List<object[]>();
-                var i_row = -1;
                 for (var i = 0; i < rowTotal; i++)
                 {
                     var splitColumnValue = sheet.Cells[i + 1, splitColumnNameIndex + 1].Value2;
@@ -54,7 +53,6 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
                         StringSplitOptions.RemoveEmptyEntries);
                     foreach (var value in array)
                     {
-                        i_row++;
                         var objArray = new object[colTotal];
                         for (var j = 0; j < colTotal; j++)
                         {
@@ -80,7 +78,7 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
                 }
                 return twoArray;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -93,8 +91,8 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
             try
             {
 
-                Workbook wb = Globals.ThisAddIn.Application.ActiveWorkbook;
-                Worksheet sheet = wb.Sheets.Add();
+                var wb = Globals.ThisAddIn.Application.ActiveWorkbook;
+                var sheet = wb.Sheets.Add();
 
                 var rowCount = array.GetLength(0);
                 var colCount = array.GetLength(1);
