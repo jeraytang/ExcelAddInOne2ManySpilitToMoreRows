@@ -13,8 +13,6 @@ namespace ExcelAddInOne2ManySpilitToMoreRows
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-           Excel.Workbook work = Application.Workbooks.Add();
-            var sheet = work.Sheets.Add();
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
