@@ -56,6 +56,7 @@
             this.btn_start.TabIndex = 10;
             this.btn_start.Text = "开始";
             this.btn_start.UseVisualStyleBackColor = true;
+            this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
             // 
             // materialLabel2
             // 

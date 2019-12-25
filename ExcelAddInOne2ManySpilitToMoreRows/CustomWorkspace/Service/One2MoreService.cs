@@ -49,22 +49,41 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
                 for (var i = 0; i < rowTotal; i++)
                 {
                     var splitColumnValue = sheet.Cells[i + 1, splitColumnNameIndex + 1].Value2;
-                    var array = splitColumnValue.Split(new string[] { this._splitChar },
-                        StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var value in array)
+                    if (string.IsNullOrWhiteSpace(splitColumnValue))
                     {
                         var objArray = new object[colTotal];
                         for (var j = 0; j < colTotal; j++)
                         {
                             if (j == splitColumnNameIndex)
                             {
-                                objArray[j] = value;
+                                objArray[j] = "";
                                 continue;
                             }
 
                             objArray[j] = Helper.GetObjString(sheet.Cells[i + 1, j + 1].Value2);
                         }
                         list.Add(objArray);
+                    }
+                    else
+                    {
+                        var array = splitColumnValue.Split(new string[] {this._splitChar},
+                            StringSplitOptions.RemoveEmptyEntries);
+                        foreach (var value in array)
+                        {
+                            var objArray = new object[colTotal];
+                            for (var j = 0; j < colTotal; j++)
+                            {
+                                if (j == splitColumnNameIndex)
+                                {
+                                    objArray[j] = value;
+                                    continue;
+                                }
+
+                                objArray[j] = Helper.GetObjString(sheet.Cells[i + 1, j + 1].Value2);
+                            }
+
+                            list.Add(objArray);
+                        }
                     }
                 }
                 var twoArray = new object[list.Count, colTotal];
@@ -80,7 +99,7 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
 
 
@@ -104,7 +123,7 @@ namespace ExcelAddInOne2ManySpilitToMoreRows.CustomWorkspace.Service
             }
             catch (Exception e)
             {
-                return false;
+                throw;
             }
         }
 

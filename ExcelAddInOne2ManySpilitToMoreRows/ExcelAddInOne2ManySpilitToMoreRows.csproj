@@ -34,7 +34,7 @@
     <PublishUrl>F:\Code\Local\ExcelAddInOne2ManySpilitToMoreRows\ExcelAddInOne2ManySpilitToMoreRows\publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>zh-chs</TargetCulture>
-    <ApplicationVersion>1.0.0.6</ApplicationVersion>
+    <ApplicationVersion>1.0.0.7</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -260,7 +260,7 @@
     <ManifestKeyFile>ExcelAddInOne2ManySpilitToMoreRows_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0AB9B051AAB0F88B05235E4BB42EDC6B55C870A2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>008A16E80053F9B3E18402A36A1F171E4A96EC24</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
